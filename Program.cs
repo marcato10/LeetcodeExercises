@@ -11,65 +11,60 @@ public class Program
 {
     public static ListNode MergeKLists(ListNode[] lists)
     {
-        if (lists.Length <= 1)
+        if (lists.Length < 1)
             return null;
         
         ListNode aux = lists[0];
         for (int i = 1; i < lists.Length; i++)
             aux = mergeTwoLists(aux,lists[i]);
-        
+        printList(aux);
         return aux;
     }
 
     public static ListNode mergeTwoLists(ListNode l1Head, ListNode l2Head)
     {
+
         ListNode i = l1Head;
         ListNode j = l2Head;
         
         ListNode l3 = new ListNode();
         ListNode l3Head = l3;
         
-        
-        while (i != null && j != null)
-        {
+        while (i != null && j != null) {
             if (i.val <= j.val)
             {
-                l3.next = new ListNode();
                 l3.val = i.val;
                 i = i.next;
             }
             else
             {
-                l3.next = new ListNode();
                 l3.val = j.val;
                 j = j.next;
             }
+
+            if (i == null || j == null)
+                break;
+            l3.next = new ListNode();
             l3 = l3.next;
         }
-        printList(l3Head);
-        Console.WriteLine("\n\n");
-        
         while (i != null)
         {
-            l3.val = i.val;
+            l3.next = new ListNode(i.val);
             i = i.next;
-            l3.next = new ListNode();
-            l3 = l3.next;
         }
-        
-        while (j != null){
-            l3.val = j.val;
+
+        while (j != null)
+        {
+            l3.next = new ListNode(j.val);
             j = j.next;
-            l3.next = new ListNode();
-            l3 = l3.next;
         }
         printList(l3Head);
+        Console.WriteLine("\n\n\n");
         return l3Head;
     }
-
+    
     public static void printList(ListNode node)
     {
-        ListNode iterator = node;
         while (node != null)
         {
             Console.WriteLine(node.val);
@@ -107,9 +102,7 @@ public class Program
         J3.next = J4;
 
         ListNode[] listNode={l1,U1,J1};
-        printList(J1);
-        Console.WriteLine("\n\n");
-        
+
         MergeKLists(listNode);
     }
 }
