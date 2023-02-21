@@ -11,6 +11,7 @@ public class Program
 {
     public static ListNode MergeKLists(ListNode[] lists)
     {
+
         if (lists.Length < 1)
             return null;
         
@@ -23,6 +24,19 @@ public class Program
 
     public static ListNode mergeTwoLists(ListNode l1Head, ListNode l2Head)
     {
+        if (l1Head == null)
+        {
+            if (l2Head == null)
+                return null;
+            return l2Head;
+        }
+
+        if (l2Head == null)
+        {
+            if (l1Head == null)
+                return null;
+            return l1Head;
+        }
 
         ListNode i = l1Head;
         ListNode j = l2Head;
@@ -47,12 +61,13 @@ public class Program
             l3.next = new ListNode();
             l3 = l3.next;
         }
+
         while (i != null)
         {
             l3.next = new ListNode(i.val);
             i = i.next;
         }
-
+        
         while (j != null)
         {
             l3.next = new ListNode(j.val);
@@ -75,20 +90,20 @@ public class Program
     public static void Main(String[] Args)
     {
         ListNode l1 = new ListNode(1);
-        ListNode l2 = new ListNode(4);
+        ListNode l2 = new ListNode(2);
         l1.next = l2;
         
-        ListNode l3 = new ListNode(5);
+        ListNode l3 = new ListNode(3);
         l2.next = l3;
         
         
-        ListNode U1 = new ListNode(1);
-        ListNode U2 = new ListNode(3);
+        ListNode U1 = new ListNode(4);
+        ListNode U2 = new ListNode(5);
         U1.next = U2;
         
-        ListNode U3 = new ListNode(4);
+        ListNode U3 = new ListNode(6);
         U2.next = U3;
-        ListNode U4 = new ListNode(10);
+        ListNode U4 = new ListNode(7);
         U3.next = U4;
         
         //eeeee
@@ -101,8 +116,9 @@ public class Program
         ListNode J4 = new ListNode(5);
         J3.next = J4;
 
-        ListNode[] listNode={l1,U1,J1};
+        ListNode[] listNode={l1,U1};
 
-        MergeKLists(listNode);
+        ListNode resultNode = MergeKLists(listNode);
+        Console.WriteLine("\n\n\n\n");
     }
 }
