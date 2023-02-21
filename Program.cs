@@ -18,7 +18,6 @@ public class Program
         ListNode aux = lists[0];
         for (int i = 1; i < lists.Length; i++)
             aux = mergeTwoLists(aux,lists[i]);
-        printList(aux);
         return aux;
     }
 
@@ -66,15 +65,15 @@ public class Program
         {
             l3.next = new ListNode(i.val);
             i = i.next;
+            l3 = l3.next;
         }
         
         while (j != null)
         {
             l3.next = new ListNode(j.val);
             j = j.next;
+            l3 = l3.next;
         }
-        printList(l3Head);
-        Console.WriteLine("\n\n\n");
         return l3Head;
     }
     
@@ -82,7 +81,6 @@ public class Program
     {
         while (node != null)
         {
-            Console.WriteLine(node.val);
             node = node.next;
         }
     }
